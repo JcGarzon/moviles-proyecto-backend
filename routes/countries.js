@@ -19,7 +19,8 @@ router.post('/', auth, async (req, res) => {
 
   const country = new Country({
     name: req.body.name,
-    code: req.body.code
+    code: req.body.code,
+    imageUrl: req.body.imageUrl // Add imageUrl
   });
 
   try {
@@ -34,9 +35,9 @@ router.post('/', auth, async (req, res) => {
 router.get('/seed', async (req, res) => {
   try {
     const countries = [
-      { name: 'Colombia', code: 'CO' },
-      { name: 'Italia', code: 'IT' },
-      { name: 'Alemania', code: 'DE' }
+      { name: 'Colombia', code: 'CO', imageUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAHlBMVEX/zQAAMIfIEC7/0gCdiFgAJooAMYuwGEPKDyzEFDFzI/UMAAAA00lEQVR4nO3QsQGCABAAsUdQcP+F7f9ay2SEzAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPzJyTYX27zZ5mBzUk7KSTkpJ+WknJSTclJOykk5KSflpJyUk3JSTspJOSkn5aSclJNyUk7KSTkpJ+WknJSTclJOykk5KSflpJyUk3JSTmo+bHOzzcM2LzYn5aSclJNyUk7KSTkpJ+WknJSTclJOykk5KSflpJyUk3JSTspJOSkn5aSclJNyUk7KSTkpJ+WknJSTclJOykk5KSflpObL9gO+4beyY1oovAAAAABJRU5ErkJggg==' },
+      { name: 'Italia', code: 'IT', imageUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoAAACnCAMAAAAPIrEmAAAAHlBMVEUAkkbOKzf///+r28LvuLxUtoPLaWvH59ag1rrIvbO2lRRDAAAAzUlEQVR4nO3PyRWAIBAFsGERpf+G6YH3vSUdpCpv9LjZ8n6Yq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq6urq1/Vn7zvjdsr7wCzuKqVC083sAAAAABJRU5ErkJggg==' },
+      { name: 'Alemania', code: 'DE', imageUrl: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASIAAACuCAMAAAClZfCTAAAAElBMVEUAAAD/zgDdAADnAADaAAD/2AAtsSEoAAAA+ElEQVR4nO3QMQGAMAAEsYeCf8tIuI0pkZANAAAAAAAAAAAAAAAAAAAAgB8dwm6CoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKewh7CbsIipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUqKkqKkKClKipKipCgpSoqSoqQoKUofMGTNC8HkSxoAAAAASUVORK5CYII=' }
     ];
     await Country.insertMany(countries);
     res.json({ message: 'Datos iniciales de países agregados' });
