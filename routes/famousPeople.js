@@ -43,6 +43,7 @@ router.get('/seed', async (req, res) => {
     const santa_marta = await City.findOne({ name: 'Santa Marta' });
     const roma = await City.findOne({ name: 'Roma' });
     const milan = await City.findOne({ name: 'Milán' });
+    const napoles = await City.findOne({ name: 'Nápoles' });
     const venecia = await City.findOne({ name: 'Venecia' });
     const modena = await City.findOne({ name: 'Modena' });
     const pisa = await City.findOne({ name: 'Pisa' });
@@ -63,38 +64,38 @@ router.get('/seed', async (req, res) => {
 
     const famousPeople = [
       // Colombia: 10 personas famosas
-      { name: 'James Rodríguez', cityId: bogota._id, category: 'Deportista', description: 'Futbolista profesional', imageUrl: 'https://example.com/images/james_rodriguez.jpg' },
-      { name: 'Shakira', cityId: barranquilla._id, category: 'Cantante', description: 'Artista internacional', imageUrl: 'https://example.com/images/shakira.jpg' },
-      { name: 'Gabriel García Márquez', cityId: santa_marta._id, category: 'Escritor', description: 'Nobel de Literatura', imageUrl: 'https://example.com/images/gabriel_garcia_marquez.jpg' },
-      { name: 'Sofía Vergara', cityId: barranquilla._id, category: 'Actriz', description: 'Actriz de Hollywood', imageUrl: 'https://example.com/images/sofia_vergara.jpg' },
-      { name: 'Radamel Falcao', cityId: santa_marta._id, category: 'Deportista', description: 'Futbolista profesional', imageUrl: 'https://example.com/images/radamel_falcao.jpg' },
-      { name: 'Juanes', cityId: medellin._id, category: 'Cantante', description: 'Músico de rock latino', imageUrl: 'https://example.com/images/juanes.jpg' },
-      { name: 'Nairo Quintana', cityId: bogota._id, category: 'Deportista', description: 'Ciclista profesional', imageUrl: 'https://example.com/images/nairo_quintana.jpg' },
-      { name: 'Fernando Botero', cityId: medellin._id, category: 'Artista', description: 'Pintor y escultor', imageUrl: 'https://example.com/images/fernando_botero.jpg' },
-      { name: 'Álvaro Uribe', cityId: medellin._id, category: 'Político', description: 'Ex presidente de Colombia', imageUrl: 'https://example.com/images/alvaro_uribe.jpg' },
-      { name: 'Catalina Sandino', cityId: bogota._id, category: 'Actriz', description: 'Actriz nominada al Óscar', imageUrl: 'https://example.com/images/catalina_sandino.jpg' },
+      { name: 'James Rodríguez', cityId: bogota._id, category: 'Deportista', description: 'Futbolista profesional', imageUrl: 'https://laotraverdad.co/wp-content/uploads/2024/07/20240710_224325-scaled.jpg' },
+      { name: 'Shakira', cityId: barranquilla._id, category: 'Cantante', description: 'Artista internacional', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0b/2023-11-16_Gala_de_los_Latin_Grammy%2C_03_%28cropped%2901.jpg' },
+      { name: 'Gabriel García Márquez', cityId: santa_marta._id, category: 'Escritor', description: 'Nobel de Literatura', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0f/Gabriel_Garcia_Marquez.jpg' },
+      { name: 'Sofía Vergara', cityId: barranquilla._id, category: 'Actriz', description: 'Actriz de Hollywood', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Sof%C3%ADa_Vergara_in_2020.jpg/640px-Sof%C3%ADa_Vergara_in_2020.jpg' },
+      { name: 'Radamel Falcao', cityId: santa_marta._id, category: 'Deportista', description: 'Futbolista profesional', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCkQdqWOqiYONjRQIefn6Kn69ALU_bJGOO3w&s' },
+      { name: 'Juanes', cityId: medellin._id, category: 'Cantante', description: 'Músico de rock latino', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/5d/2023-11-16_Gala_de_los_Latin_Grammy%2C_14_%28cropped%29.jpg' },
+      { name: 'Nairo Quintana', cityId: bogota._id, category: 'Deportista', description: 'Ciclista profesional', imageUrl: 'https://movistarteam.com/wp-content/uploads/2024/01/QUINTANA-Nairo-01.jpg' },
+      { name: 'Fernando Botero', cityId: medellin._id, category: 'Artista', description: 'Pintor y escultor', imageUrl: 'https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/LH4MQ2QZKRFE5DU6JJWWQYV6TM.jpg' },
+      { name: 'Álvaro Uribe', cityId: medellin._id, category: 'Político', description: 'Ex presidente de Colombia', imageUrl: 'https://franciscofajardoabogados.com/wp-content/uploads/2024/10/Alvaro-Uribe-1280x1280.png' },
+      { name: 'Catalina Sandino', cityId: bogota._id, category: 'Actriz', description: 'Actriz nominada al Óscar', imageUrl: 'https://m.media-amazon.com/images/M/MV5BMTg5MDI5MTA0M15BMl5BanBnXkFtZTgwODE2NDA1NTE@._V1_.jpg' },
       // Italia: 10 personas famosas
-      { name: 'Leonardo da Vinci', cityId: milan._id, category: 'Artista', description: 'Pintor del Renacimiento', imageUrl: 'https://example.com/images/leonardo_da_vinci.jpg' },
-      { name: 'Sophia Loren', cityId: roma._id, category: 'Actriz', description: 'Icono del cine italiano', imageUrl: 'https://example.com/images/sophia_loren.jpg' },
-      { name: 'Andrea Bocelli', cityId: milan._id, category: 'Cantante', description: 'Tenor de ópera', imageUrl: 'https://example.com/images/andrea_bocelli.jpg' },
-      { name: 'Giorgio Armani', cityId: milan._id, category: 'Diseñador', description: 'Diseñador de moda', imageUrl: 'https://example.com/images/giorgio_armani.jpg' },
-      { name: 'Geronimo Momo Benavidez', cityId: venecia._id, category: 'Streamer', description: 'Streamer italiano', imageUrl: 'https://example.com/images/geronimo_momo_benavidez.jpg' },
-      { name: 'Luciano Pavarotti', cityId: modena._id, category: 'Cantante', description: 'Tenor de ópera', imageUrl: 'https://example.com/images/luciano_pavarotti.jpg' },
-      { name: 'Monica Bellucci', cityId: roma._id, category: 'Actriz', description: 'Actriz de cine', imageUrl: 'https://example.com/images/monica_bellucci.jpg' },
-      { name: 'Galileo Galilei', cityId: pisa._id, category: 'Científico', description: 'Astrónomo y matemático', imageUrl: 'https://example.com/images/galileo_galilei.jpg' },
-      { name: 'Valentino Rossi', cityId: urbino._id, category: 'Deportista', description: 'Piloto de motociclismo', imageUrl: 'https://example.com/images/valentino_rossi.jpg' },
-      { name: 'Silvio Berlusconi', cityId: milan._id, category: 'Político', description: 'Ex primer ministro', imageUrl: 'https://example.com/images/silvio_berlusconi.jpg' },
+      { name: 'Leonardo da Vinci', cityId: milan._id, category: 'Artista', description: 'Pintor del Renacimiento', imageUrl: 'https://static.nationalgeographic.es/files/styles/image_3200/public/01-leonardo-da-vinci-book-talk.jpg?w=1900&h=2279' },
+      { name: 'Sophia Loren', cityId: roma._id, category: 'Actriz', description: 'Icono del cine italiano', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Sophia_Loren_-_1959.jpg/640px-Sophia_Loren_-_1959.jpg' },
+      { name: 'Andrea Bocelli', cityId: milan._id, category: 'Cantante', description: 'Tenor de ópera', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Andrea_Bocelli_20190511_017-2_%28cropped%29.jpg/1200px-Andrea_Bocelli_20190511_017-2_%28cropped%29.jpg' },
+      { name: 'Giorgio Armani', cityId: milan._id, category: 'Diseñador', description: 'Diseñador de moda', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/GiorgioArmani.jpg/1200px-GiorgioArmani.jpg' },
+      { name: 'Geronimo Momo Benavides', cityId: napoles._id, category: 'Streamer', description: 'Streamer italiano', imageUrl: 'https://pbs.twimg.com/media/F9rLHpBWgAEuiz8.jpg' },
+      { name: 'Luciano Pavarotti', cityId: modena._id, category: 'Cantante', description: 'Tenor de ópera', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Luciano_Pavarotti_2004.jpg/960px-Luciano_Pavarotti_2004.jpg' },
+      { name: 'Monica Bellucci', cityId: roma._id, category: 'Actriz', description: 'Actriz de cine', imageUrl: 'https://www.infobae.com/resizer/v2/3QTRAM2AP3AYEUBUH675RIDY5A.jpg?auth=9204152370c57bbcb49b11be4c43d8a627cd34c4fab93d2889da620229e97ce3&smart=true&width=1200&height=1200&quality=85' },
+      { name: 'Galileo Galilei', cityId: pisa._id, category: 'Científico', description: 'Astrónomo y matemático', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Justus_Sustermans_-_Portrait_of_Galileo_Galilei%2C_1636.jpg/960px-Justus_Sustermans_-_Portrait_of_Galileo_Galilei%2C_1636.jpg' },
+      { name: 'Valentino Rossi', cityId: urbino._id, category: 'Deportista', description: 'Piloto de motociclismo', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Valentino_Rossi_2024_WEC_Fuji_1.jpg' },
+      { name: 'Silvio Berlusconi', cityId: milan._id, category: 'Político', description: 'Ex primer ministro', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Silvio_Berlusconi_2018.jpg/1200px-Silvio_Berlusconi_2018.jpg' },
       // Alemania: 10 personas famosas
-      { name: 'Albert Einstein', cityId: munich._id, category: 'Científico', description: 'Físico teórico', imageUrl: 'https://example.com/images/albert_einstein.jpg' },
-      { name: 'Angela Merkel', cityId: berlin._id, category: 'Política', description: 'Ex canciller de Alemania', imageUrl: 'https://example.com/images/angela_merkel.jpg' },
-      { name: 'Ludwig van Beethoven', cityId: bonn._id, category: 'Músico', description: 'Compositor clásico', imageUrl: 'https://example.com/images/beethoven.jpg' },
-      { name: 'Michael Schumacher', cityId: cologne._id, category: 'Deportista', description: 'Piloto de Fórmula 1', imageUrl: 'https://example.com/images/michael_schumacher.jpg' },
-      { name: 'Johann Wolfgang von Goethe', cityId: frankfurt._id, category: 'Escritor', description: 'Poeta y dramaturgo', imageUrl: 'https://example.com/images/goethe.jpg' },
-      { name: 'Thomas Müller', cityId: munich._id, category: 'Deportista', description: 'Futbolista profesional', imageUrl: 'https://example.com/images/thomas_muller.jpg' },
-      { name: 'Heidi Klum', cityId: bergisch_gladbach._id, category: 'Modelo', description: 'Modelo y presentadora', imageUrl: 'https://example.com/images/heidi_klum.jpg' },
-      { name: 'Karl Marx', cityId: trier._id, category: 'Filósofo', description: 'Economista y filósofo', imageUrl: 'https://example.com/images/karl_marx.jpg' },
-      { name: 'Rammstein', cityId: berlin._id, category: 'Banda', description: 'Banda de metal industrial', imageUrl: 'https://example.com/images/rammstein.jpg' },
-      { name: 'Steffi Graf', cityId: mannheim._id, category: 'Deportista', description: 'Tenista profesional', imageUrl: 'https://example.com/images/steffi_graf.jpg' }
+      { name: 'Albert Einstein', cityId: munich._id, category: 'Científico', description: 'Físico teórico', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/960px-Albert_Einstein_Head.jpg' },
+      { name: 'Angela Merkel', cityId: berlin._id, category: 'Política', description: 'Ex canciller de Alemania', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Angela_Merkel_2019_cropped.jpg/1200px-Angela_Merkel_2019_cropped.jpg' },
+      { name: 'Ludwig van Beethoven', cityId: bonn._id, category: 'Músico', description: 'Compositor clásico', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Beethoven.jpg/960px-Beethoven.jpg' },
+      { name: 'Michael Schumacher', cityId: cologne._id, category: 'Deportista', description: 'Piloto de Fórmula 1', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Michael_Schumacher_%28Ferrari%29_-_GP_d%27Italia_1998.jpg' },
+      { name: 'Johann Wolfgang von Goethe', cityId: frankfurt._id, category: 'Escritor', description: 'Poeta y dramaturgo', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Goethe_%28Stieler_1828%29.jpg/960px-Goethe_%28Stieler_1828%29.jpg' },
+      { name: 'Thomas Müller', cityId: munich._id, category: 'Deportista', description: 'Futbolista profesional', imageUrl: 'https://ca-times.brightspotcdn.com/dims4/default/b01f090/2147483647/strip/true/crop/6585x4390+0+0/resize/1200x800!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F66%2F07%2F5b8c8d2ec8e0a7bea9648785bea2%2F9a900f7e495440babb89980409179745' },
+      { name: 'Heidi Klum', cityId: bergisch_gladbach._id, category: 'Modelo', description: 'Modelo y presentadora', imageUrl: 'https://www.nbc.com/sites/nbcblog/files/2024/09/heidi-klum-5.jpg' },
+      { name: 'Karl Marx', cityId: trier._id, category: 'Filósofo', description: 'Economista y filósofo', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Karl_Marx_001.jpg' },
+      { name: 'Rammstein', cityId: berlin._id, category: 'Banda', description: 'Banda de metal industrial', imageUrl: 'https://mediaproxy.tvtropes.org/width/1200/https://static.tvtropes.org/pmwiki/pub/images/rammstein_1.png' },
+      { name: 'Steffi Graf', cityId: mannheim._id, category: 'Deportista', description: 'Tenista profesional', imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHWPCSYjd3suRwlfJLfi_kbfR1KPvlKwXAnA&s' }
     ];
     await FamousPerson.insertMany(famousPeople);
     res.json({ message: 'Datos iniciales de personas famosas agregados' });
