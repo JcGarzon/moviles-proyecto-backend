@@ -23,6 +23,84 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+router.get('/top-sites-by-country', auth, async (req, res) => {
+  try {
+    const topSites = await Visit.aggregate([
+      {
+        $group: {
+          _id: '$siteId',
+          visitCount: { $sum: 1 }
+        }
+      },
+      {
+        $lookup: {
+          from: 'sites',
+          localField: '_id',
+          foreignField: '_id',
+          as: 'site'
+        }
+      },
+      {
+        $unwind: '$site'
+      },
+      {
+        $lookup: {
+          from: 'cities',
+          localField: 'site.cityId',
+          foreignField: '_id',
+          as: 'city'
+        }
+      },
+      {
+        $unwind: '$city'
+      },
+      {
+        $lookup: {
+          from: 'countries',
+          localField: 'city.countryId',
+          foreignField: '_id',
+          as: 'country'
+        }
+      },
+      {
+        $unwind: '$country'
+      },
+      {
+        $group: {
+          _id: '$country._id',
+          countryName: { $first: '$country.name' },
+          sites: {
+            $push: {
+              siteId: '$site._id',
+              siteName: '$site.name',
+              cityName: '$city.name',
+              visitCount: '$visitCount'
+            }
+          }
+        }
+      },
+      {
+        $project: {
+          countryName: 1,
+          sites: {
+            $slice: [
+              { $sortArray: { input: '$sites', sortBy: { visitCount: -1 } } },
+              10
+            ]
+          }
+        }
+      },
+      {
+        $sort: { countryName: 1 }
+      }
+    ]);
+
+    res.json(topSites);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Registrar una visita
 router.post('/', auth, async (req, res) => {
   const visit = new Visit({
