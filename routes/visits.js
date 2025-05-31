@@ -8,7 +8,15 @@ router.get('/', auth, async (req, res) => {
   try {
     const visits = await Visit.find()
       .populate('userId')
-      .populate('siteId');
+      .populate({
+        path: 'siteId',
+        populate: {
+          path: 'cityId',
+          populate: {
+            path: 'countryId'
+          }
+        }
+      });
     res.json(visits);
   } catch (err) {
     res.status(500).json({ message: err.message });
