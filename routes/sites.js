@@ -14,6 +14,27 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Obtener un sitio por ID
+router.get('/:id', async (req, res) => {
+  try {
+    const site = await Site.findById(req.params.id)
+      .populate({
+        path: 'cityId',
+        populate: {
+          path: 'countryId'
+        }
+      });
+
+    if (!site) {
+      return res.status(404).json({ message: 'Sitio no encontrado' });
+    }
+
+    res.json(site);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Crear un sitio (solo admin)
 router.post('/', auth, async (req, res) => {
   if (req.user.role !== 'Admin') return res.status(403).json({ message: 'No autorizado' });
