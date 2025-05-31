@@ -23,6 +23,7 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// Obtener los 10 sitios más visitados por país
 router.get('/top-sites-by-country', auth, async (req, res) => {
   try {
     const topSites = await Visit.aggregate([
@@ -74,7 +75,8 @@ router.get('/top-sites-by-country', auth, async (req, res) => {
               siteId: '$site._id',
               siteName: '$site.name',
               cityName: '$city.name',
-              visitCount: '$visitCount'
+              visitCount: '$visitCount',
+              imageUrl: '$site.imageUrl' // Add imageUrl from site
             }
           }
         }
