@@ -16,6 +16,31 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// Obtener tags por userId
+router.get('/by-user/:userId', auth, async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    
+    // Verify userId is valid
+    if (!userId || !userId.match(/^[0-9a-fA-F]{24}$/)) {
+      return res.status(400).json({ message: 'ID de usuario inválido' });
+    }
+
+    const tags = await Tag.find({ userId })
+      .populate('userId')
+      .populate('famousPersonId')
+      .populate('siteId');
+
+    if (!tags.length) {
+      return res.status(404).json({ message: 'No se encontraron tags para este usuario' });
+    }
+
+    res.json(tags);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 // Registrar un tag
 router.post('/', auth, async (req, res) => {
   const tag = new Tag({
